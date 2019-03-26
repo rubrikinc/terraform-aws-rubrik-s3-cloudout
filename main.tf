@@ -75,7 +75,6 @@ resource "aws_s3_bucket" "archive_target" {
 #      Create KMS Key for Encryption       #
 ############################################
 resource "aws_kms_key" "rubrik-cloudout" {
-  count       = "${local.kms}"
   description = "KMS Key for Rubrik CloudOut."
 
   policy = <<EOF
@@ -128,8 +127,6 @@ resource "aws_kms_key" "rubrik-cloudout" {
 }
 
 resource "aws_kms_alias" "a" {
-  count = "${local.kms}"
-
   name          = "alias/${var.kms_key_alias}"
   target_key_id = "${aws_kms_key.rubrik-cloudout.key_id}"
 }
@@ -139,9 +136,6 @@ resource "aws_kms_alias" "a" {
 ############################################
 
 resource "rubrik_aws_s3_cloudout" "archive-target" {
-  count = "${local.kms}"
-
-  count             = 1
   aws_bucket        = "${aws_s3_bucket.archive_target.bucket}"
   storage_class     = "${var.storage_class}"
   archive_name      = "${var.archive_name}"
