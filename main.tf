@@ -62,7 +62,7 @@ resource "aws_iam_user_policy_attachment" "rubrik-iam-cloudout" {
 }
 
 resource "aws_kms_key" "rubrik-cloudout" {
-  description = "KMS Key for Gaia Lab use."
+  description = "KMS Key for Rubrik CloudOut."
 
   policy = <<EOF
 {
