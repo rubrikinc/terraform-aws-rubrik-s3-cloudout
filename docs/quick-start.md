@@ -26,7 +26,7 @@ The following are the variables accepted by the module.
 | bucket_name          | The name of the S3 bucket to use as an archive target.                                                                    | string |                  |    yes   |
 | archive_name         | The name of the Rubrik archive location in the Rubrik GUI.                                                                | string |                  |    yes   |
 | bucket_force_destory | A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. |  bool  |       false      |    no    |
-| storage_class        | The storage class of the S3 Bucket. Valid choices are standard-1, standard_ia, and reduced_redundancy.                    | string |     standard     |    no    |
+| storage_class        | The storage class of the S3 Bucket. Valid choices are standard, standard_ia, and reduced_redundancy.                      | string |     standard     |    no    |
 | iam_user_name        | The name of the IAM User to create.                                                                                       | string |      rubrik      |    no    |
 | iam_policy_name      | The name of the IAM Policy configured with the correct CloudOut permissions.                                              | string | rubrik-cloud-out |    no    |
 | kms_key_alias        | The alias for the KMS Key ID.                                                                                             | string | rubrik-cloud-out |    no    |
