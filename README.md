@@ -1,10 +1,19 @@
 # terraform-aws-rubrik-cloud-out
 
-Terraform module that configures an AWS as an S3 archive target and adds that target to the Rubrik cluster.
+Terraform module that configures an AWS S3 archive target and adds that target to the Rubrik cluster. The following steps are completed by the module:
+
+* Create a new AWS S3 Bucket
+* Create a new user specific to Rubrik
+* Create a new IAM Policy with the correct permissions and attached to the new user.
+* Create a new KMS Key to use for encryption
+* Adds the S3 Bucket to the Rubrik cluster as an archival location
 
 ## Documentation
 
-Here are some resources to get you started! If you find any challenges from this project are not properly documented or are unclear, please raise an issueand let us know! This is a fun, safe environment - don't worry if you're a GitHub newbie! 
+Here are some resources to get you started! If you find any challenges from this project are not properly documented or are unclear, please raise an issueand let us know! This is a fun, safe environment - don't worry if you're a GitHub newbie!
+
+* [Quick Start Guide](/docs/quick-start.md)
+* [Rubrik API Documentation](https://github.com/rubrikinc/api-documentation)
 
 ### Usage
 
@@ -31,8 +40,10 @@ The following are the variables accepted by the module.
 | iam_policy_name      | The name of the IAM Policy configured with the correct CloudOut permissions.                                              | string | rubrik-cloud-out |    no    |
 | kms_key_alias        | The alias for the KMS Key ID.                                                                                             | string | rubrik-cloud-out |    no    |
 
-* [Quick Start Guide](/docs/quick-start.md)
-* [Rubrik API Documentation](https://github.com/rubrikinc/api-documentation)
+| WARNING: The new IAM User Secret key is stored in plaintext in the `terraform.tfstate` file. Please ensure this file is stored properly.  |
+| --- |
+
+
 
 ## Prerequisites
 
