@@ -2,6 +2,11 @@ variable "bucket_name" {
   description = "The name of the S3 bucket to use as an archive target."
 }
 
+variable "bucket_force_destory" {
+  description = "A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error."
+  default     = false
+}
+
 variable "storage_class" {
   description = "The storage class of the S3 Bucket."
   default     = "standard"
@@ -19,4 +24,9 @@ variable "iam_user_name" {
 variable "iam_policy_name" {
   description = "The name of the IAM Policy configured with the correct CloudOut permissions"
   default     = "rubrik-cloudout"
+}
+
+variable "kms_key_alias" {
+  description = "The alias for the KMS Key ID"
+  default     = "rubrik-cloud-out"
 }
