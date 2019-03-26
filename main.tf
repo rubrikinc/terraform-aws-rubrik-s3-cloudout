@@ -63,6 +63,10 @@ resource "aws_iam_user_policy_attachment" "rubrik-user" {
   policy_arn = "${aws_iam_policy.cloud-out-permissions.arn}"
 }
 
+resource "aws_iam_access_key" "rubrik-user" {
+  user = "${aws_iam_user.rubrik.name}"
+}
+
 ###############################
 #      Create S3 Bucket       #
 ###############################
@@ -136,6 +140,8 @@ resource "aws_kms_alias" "a" {
 ############################################
 
 resource "rubrik_aws_s3_cloudout" "archive-target" {
+  aws_access_key    = "${aws_iam_access_key.rubrik-user.id}"
+  aws_secret_key    = "${aws_iam_access_key.rubrik-user.secret}"
   aws_bucket        = "${aws_s3_bucket.archive_target.bucket}"
   storage_class     = "${var.storage_class}"
   archive_name      = "${var.archive_name}"
