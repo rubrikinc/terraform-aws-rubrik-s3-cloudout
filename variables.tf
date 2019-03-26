@@ -22,11 +22,11 @@ variable "iam_user_name" {
 }
 
 variable "iam_policy_name" {
-  description = "The name of the IAM Policy configured with the correct CloudOut permissions"
-  default     = "rubrik-cloudout"
+  description = "The name of the IAM Policy configured with the correct CloudOut permissions."
+  default     = "rubrik-cloud-out"
 }
 
 variable "kms_key_alias" {
-  description = "The alias for the KMS Key ID"
+  description = "The alias for the KMS Key ID."
   default     = "rubrik-cloud-out"
 }
