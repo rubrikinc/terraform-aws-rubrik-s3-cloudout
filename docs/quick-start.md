@@ -1,4 +1,4 @@
-# Quick Start: Rubrik AWS S3 Cloud Out Deployment Terraform Module
+# Quick Start: Rubrik AWS S3 CloudOut Deployment Terraform Module
 
 Configure an AWS S3 archive target and add that target to the Rubrik cluster. The following steps are completed by the module:
 
@@ -16,7 +16,7 @@ In your [Terraform configuration](https://learn.hashicorp.com/terraform/getting-
 
 ```hcl
 module "rubrik_aws_cloud_cluster" {
-  source  = "rubrikinc/aws-s3-rubrik-cloud-out/module"
+  source  = "rubrikinc/aws-s3-rubrik-cloudout/module"
 
   bucket_name  = "rubrik-tf-module-bucket"
   archive_name = "S3:ArchiveLocation"
@@ -58,7 +58,7 @@ The directory can be initialized for Terraform use by running the `terraform ini
 ```none
 Initializing modules...
 - module.rubrik_aws_cloud_cluster
-  Getting source "rubrikinc/aws-rubrik-s3-cloud-out/module"
+  Getting source "rubrikinc/aws-rubrik-s3-cloudout/module"
 
 Initializing provider plugins...
 
