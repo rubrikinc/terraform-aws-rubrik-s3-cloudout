@@ -1,4 +1,4 @@
-# terraform-aws-rubrik-cloud-out
+# terraform-aws-s3-rubrik-cloudout
 
 Terraform module that configures an AWS S3 archive target and adds that target to the Rubrik cluster. The following steps are completed by the module:
 
@@ -19,7 +19,7 @@ Here are some resources to get you started! If you find any challenges from this
 
 ```hcl
 module "rubrik_aws_cloud_cluster" {
-  source  = "rubrikinc/aws-s3-rubrik-cloud-out/module"
+  source  = "rubrikinc/aws-s3-rubrik-cloudout/module"
 
   bucket_name  = "rubrik-tf-module-bucket"
   archive_name = "S3:ArchiveLocation"
