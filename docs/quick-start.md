@@ -16,7 +16,7 @@ In your [Terraform configuration](https://learn.hashicorp.com/terraform/getting-
 
 ```hcl
 module "rubrik_aws_cloud_cluster" {
-  source  = "rubrikinc/aws-rubrik-cloudout-s3/module"
+  source  = "rubrikinc/aws-s3-rubrik-cloud-out/module"
 
   bucket_name  = "rubrik-tf-module-bucket"
   archive_name = "S3:ArchiveLocation"
@@ -58,7 +58,7 @@ The directory can be initialized for Terraform use by running the `terraform ini
 ```none
 Initializing modules...
 - module.rubrik_aws_cloud_cluster
-  Getting source "rubrikinc/aws-rubrik-cloud-cluster/module"
+  Getting source "rubrikinc/aws-rubrik-s3-cloud-out/module"
 
 Initializing provider plugins...
 
