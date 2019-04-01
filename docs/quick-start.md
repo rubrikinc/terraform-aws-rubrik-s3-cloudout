@@ -57,7 +57,7 @@ The directory can be initialized for Terraform use by running the `terraform ini
 
 ```none
 Initializing modules...
-- module.rubrik_aws_cloud_cluster
+- module.rubrik_aws_cloudout
   Getting source "rubrikinc/aws-rubrik-s3-cloudout/module"
 
 Initializing provider plugins...
