@@ -8,7 +8,7 @@ Configure an AWS S3 archive target and add that target to the Rubrik cluster. Th
 * Create a new KMS Key to use for encryption
 * Adds the S3 Bucket to the Rubrik cluster as an archival location
 
-Completing the steps detailed below will require that Terraform is installed and in your environment path, that you are running the instance from a *nix shell (bash, zsh, etc), and that your machine is allowed HTTPS access through the AWS Security Group, and any Network ACLs, into the instances provisioned.
+Completing the steps detailed below will require that Terraform is installed and in your environment path, that you are running the instance from a *nix shell (bash, zsh, etc).
 
 ## Configuration
 
