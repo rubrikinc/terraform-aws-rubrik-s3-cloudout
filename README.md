@@ -18,7 +18,7 @@ Here are some resources to get you started! If you find any challenges from this
 ### Usage
 
 ```hcl
-module "rubrik_aws_cloud_cluster" {
+module "rubrik_aws_cloudout" {
   source  = "rubrikinc/aws-s3-rubrik-cloudout/module"
 
   bucket_name  = "rubrik-tf-module-bucket"
