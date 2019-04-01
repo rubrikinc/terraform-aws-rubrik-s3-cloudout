@@ -1,4 +1,4 @@
-# Terraform Module - AWS S3 Rubrik CloudOut
+# Terraform Module - AWS Rubrik S3 CloudOut
 
 Terraform module that configures an AWS S3 archive target and adds that target to the Rubrik cluster. The following steps are completed by the module:
 
