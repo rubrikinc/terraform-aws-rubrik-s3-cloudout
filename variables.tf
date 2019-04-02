@@ -30,3 +30,8 @@ variable "kms_key_alias" {
   description = "The alias for the KMS Key ID."
   default     = "rubrik-cloud-out"
 }
+
+variable "timeout" {
+  description = "The alias for the KMS Key ID."
+  default     = "rubrik-cloud-out"
+}

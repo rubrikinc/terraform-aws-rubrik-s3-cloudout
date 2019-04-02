@@ -147,4 +147,5 @@ resource "rubrik_aws_s3_cloudout" "archive-target" {
   archive_name      = "${var.archive_name}"
   aws_region        = "${data.aws_region.current.name}"
   kms_master_key_id = "${aws_kms_key.rubrik-cloudout.key_id}"
+  timeout           = "${var.timeout}"
 }

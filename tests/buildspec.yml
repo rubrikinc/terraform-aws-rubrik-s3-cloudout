@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+ 
+  build:
+    commands:
+      - cd tests/create-cloud-cluster
+      - terraform init -no-color
+      - terraform apply -auto-approve -no-color
+      - cd ../cloud-out-configuration
+      - terraform init -no-color
+      - terraform apply -auto-approve -no-color
+  post_build:
+    commands:
+      - terraform destroy -auto-approve -no-color
+      - cd ../create-cloud-cluster
+      - terraform destroy -auto-approve -no-color
