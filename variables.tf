@@ -32,6 +32,6 @@ variable "kms_key_alias" {
 }
 
 variable "timeout" {
-  description = "The alias for the KMS Key ID."
-  default     = "rubrik-cloud-out"
+  description = "The number of seconds to wait to establish a connection the Rubrik cluster before returning a timeout error."
+  default     = 120
 }
