@@ -1,5 +1,7 @@
 # Terraform Module - AWS Rubrik S3 CloudOut
 
+![AWS CodeBuild Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoibk1JcW1LMFdOYXpNL0c5T052VzRCc0l1SE9BR3BzZkh2bkdlNGxyTzNuUzBOZ2tvZmtWZE1ZbWdrQmplSDJYODVOYnlRc1lDRWhrejI1ZS9aS1ZaZG5zPSIsIml2UGFyYW1ldGVyU3BlYyI6IlNCTzVjWmpXMXlrSHdrNmIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+
 Terraform module that configures an AWS S3 archive target and adds that target to the Rubrik cluster. The following steps are completed by the module:
 
 * Create a new AWS S3 Bucket
