@@ -38,6 +38,8 @@ The following are the variables accepted by the module.
 | iam_user_name        | The name of the IAM User to create.                                                                                       | string |      rubrik      |    no    |
 | iam_policy_name      | The name of the IAM Policy configured with the correct CloudOut permissions.                                              | string | rubrik-cloud-out |    no    |
 | kms_key_alias        | The alias for the KMS Key ID.                                                                                             | string | rubrik-cloud-out |    no    |
+| timeout              | The number of seconds to wait to establish a connection the Rubrik cluster before returning a timeout error.              |   int  |        120       |    no    |
+
 
 | WARNING: The new IAM User Secret key is stored in plaintext in the `terraform.tfstate` file. Please ensure this file is stored properly.  |
 | --- |
