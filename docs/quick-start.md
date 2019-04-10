@@ -8,7 +8,7 @@ Configure an AWS S3 archive target and add that target to the Rubrik cluster. Th
 * Create a new KMS Key to use for encryption
 * Adds the S3 Bucket to the Rubrik cluster as an archival location
 
-Completing the steps detailed below will require that Terraform is installed and in your environment path, that you are running the instance from a *nix shell (bash, zsh, etc), and that your machine is allowed HTTPS access through the AWS Security Group, and any Network ACLs, into the instances provisioned.
+Completing the steps detailed below will require that Terraform is installed and in your environment path, that you are running the instance from a *nix shell (bash, zsh, etc).
 
 ## Configuration
 
@@ -16,7 +16,7 @@ In your [Terraform configuration](https://learn.hashicorp.com/terraform/getting-
 
 ```hcl
 module "rubrik_aws_cloud_cluster" {
-  source  = "rubrikinc/aws-s3-rubrik-cloudout/module"
+  source = "rubrikinc/rubrik-s3-cloudout/aws"
 
   bucket_name  = "rubrik-tf-module-bucket"
   archive_name = "S3:ArchiveLocation"
@@ -38,6 +38,8 @@ The following are the variables accepted by the module.
 | iam_user_name        | The name of the IAM User to create.                                                                                       | string |      rubrik      |    no    |
 | iam_policy_name      | The name of the IAM Policy configured with the correct CloudOut permissions.                                              | string | rubrik-cloud-out |    no    |
 | kms_key_alias        | The alias for the KMS Key ID.                                                                                             | string | rubrik-cloud-out |    no    |
+| timeout              | The number of seconds to wait to establish a connection the Rubrik cluster before returning a timeout error.              |   int  |        120       |    no    |
+
 
 | WARNING: The new IAM User Secret key is stored in plaintext in the `terraform.tfstate` file. Please ensure this file is stored properly.  |
 | --- |
@@ -57,8 +59,8 @@ The directory can be initialized for Terraform use by running the `terraform ini
 
 ```none
 Initializing modules...
-- module.rubrik_aws_cloud_cluster
-  Getting source "rubrikinc/aws-rubrik-s3-cloudout/module"
+- module.rubrik-s3-cloudou
+  Getting source = "rubrikinc/rubrik-s3-cloudout/aws"
 
 Initializing provider plugins...
 

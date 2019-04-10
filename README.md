@@ -1,4 +1,6 @@
-# Terraform Module - AWS S3 Rubrik CloudOut
+# Terraform Module - AWS Rubrik S3 CloudOut
+
+![AWS CodeBuild Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoibk1JcW1LMFdOYXpNL0c5T052VzRCc0l1SE9BR3BzZkh2bkdlNGxyTzNuUzBOZ2tvZmtWZE1ZbWdrQmplSDJYODVOYnlRc1lDRWhrejI1ZS9aS1ZaZG5zPSIsIml2UGFyYW1ldGVyU3BlYyI6IlNCTzVjWmpXMXlrSHdrNmIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 Terraform module that configures an AWS S3 archive target and adds that target to the Rubrik cluster. The following steps are completed by the module:
 
@@ -19,7 +21,7 @@ Here are some resources to get you started! If you find any challenges from this
 
 ```hcl
 module "rubrik_aws_cloudout" {
-  source  = "rubrikinc/aws-s3-rubrik-cloudout/module"
+  source = "rubrikinc/rubrik-s3-cloudout/aws"
 
   bucket_name  = "rubrik-tf-module-bucket"
   archive_name = "S3:ArchiveLocation"
@@ -39,6 +41,7 @@ The following are the variables accepted by the module.
 | iam_user_name        | The name of the IAM User to create.                                                                                       | string |      rubrik      |    no    |
 | iam_policy_name      | The name of the IAM Policy configured with the correct CloudOut permissions.                                              | string | rubrik-cloud-out |    no    |
 | kms_key_alias        | The alias for the KMS Key ID.                                                                                             | string | rubrik-cloud-out |    no    |
+| timeout              | The number of seconds to wait to establish a connection the Rubrik cluster before returning a timeout error.              |   int  |        120       |    no    |
 
 | WARNING: The new IAM User Secret key is stored in plaintext in the `terraform.tfstate` file. Please ensure this file is stored properly.  |
 | --- |
