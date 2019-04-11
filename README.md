@@ -46,7 +46,7 @@ The following are the variables accepted by the module.
 | WARNING: The new IAM User Secret key is stored in plaintext in the `terraform.tfstate` file. Please ensure this file is stored properly.  |
 | --- |
 
-## Oututs
+## Outputs
 
 The following are the variables outputed by the module.
 
