@@ -48,7 +48,7 @@ The following are the variables accepted by the module.
 
 ## Oututs
 
-The following are the variables accepted by the module.
+The following are the variables outputed by the module.
 
 | Name                | Description                                                     |
 |---------------------|-----------------------------------------------------------------|
