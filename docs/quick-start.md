@@ -44,6 +44,15 @@ The following are the variables accepted by the module.
 | WARNING: The new IAM User Secret key is stored in plaintext in the `terraform.tfstate` file. Please ensure this file is stored properly.  |
 | --- |
 
+## Oututs
+
+The following are the variables outputed by the module.
+
+| Name                | Description                                                     |
+|---------------------|-----------------------------------------------------------------|
+| aws_iam_user_name   | The name of the AWS IAM User created.                           |
+| rubrik_archive_name | he name of the archival location created on the Rubrik cluster. |
+
 ## Running the Terraform Configuration
 
 This section outlines what is required to run the configuration defined above. 
