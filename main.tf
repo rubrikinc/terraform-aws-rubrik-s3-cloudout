@@ -7,18 +7,16 @@ terraform {
 #############################
 data "aws_caller_identity" "current" {}
 
-data "aws_region" "current" {}
-
 ###############################
 # AWS IAM User and Permission #
 ###############################
 
 resource "aws_iam_user" "rubrik" {
-  name = "${var.iam_user_name}"
+  name = var.iam_user_name
 }
 
 resource "aws_iam_policy" "cloud-out-permissions" {
-  name = "${var.iam_policy_name}"
+  name = var.iam_policy_name
 
   policy = <<EOF
 {
@@ -59,20 +57,20 @@ EOF
 }
 
 resource "aws_iam_user_policy_attachment" "rubrik-user" {
-  user       = "${aws_iam_user.rubrik.name}"
-  policy_arn = "${aws_iam_policy.cloud-out-permissions.arn}"
+  user       = aws_iam_user.rubrik.name
+  policy_arn = aws_iam_policy.cloud-out-permissions.arn
 }
 
 resource "aws_iam_access_key" "rubrik-user" {
-  user = "${aws_iam_user.rubrik.name}"
+  user = aws_iam_user.rubrik.name
 }
 
 ###############################
 #      Create S3 Bucket       #
 ###############################
 resource "aws_s3_bucket" "archive_target" {
-  bucket        = "${var.bucket_name}"
-  force_destroy = "${var.bucket_force_destory}"
+  bucket        = var.bucket_name
+  force_destroy = var.bucket_force_destory
 }
 
 resource "aws_s3_bucket_public_access_block" "archive_target" {
@@ -140,7 +138,7 @@ resource "aws_kms_key" "rubrik-cloudout" {
 
 resource "aws_kms_alias" "a" {
   name          = "alias/${var.kms_key_alias}"
-  target_key_id = "${aws_kms_key.rubrik-cloudout.key_id}"
+  target_key_id = aws_kms_key.rubrik-cloudout.key_id
 }
 
 ############################################
@@ -148,12 +146,12 @@ resource "aws_kms_alias" "a" {
 ############################################
 
 resource "rubrik_aws_s3_cloudout" "archive-target" {
-  aws_access_key    = "${aws_iam_access_key.rubrik-user.id}"
-  aws_secret_key    = "${aws_iam_access_key.rubrik-user.secret}"
-  aws_bucket        = "${aws_s3_bucket.archive_target.bucket}"
-  storage_class     = "${var.storage_class}"
-  archive_name      = "${var.archive_name}"
-  aws_region        = "${data.aws_region.current.name}"
-  kms_master_key_id = "${aws_kms_key.rubrik-cloudout.key_id}"
-  timeout           = "${var.timeout}"
+  aws_access_key    = aws_iam_access_key.rubrik-user.id
+  aws_secret_key    = aws_iam_access_key.rubrik-user.secret
+  aws_bucket        = aws_s3_bucket.archive_target.bucket
+  storage_class     = var.storage_class
+  archive_name      = var.archive_name
+  aws_region        = var.aws_region
+  kms_master_key_id = aws_kms_key.rubrik-cloudout.key_id
+  timeout           = var.timeout
 }

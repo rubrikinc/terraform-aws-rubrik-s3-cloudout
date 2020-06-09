@@ -1,3 +1,8 @@
+variable "aws_region" {
+    type        = string
+    description = "Region to create S3 bucket"
+}
+
 variable "bucket_name" {
   description = "The name of the S3 bucket to use as an archive target."
 }
