@@ -30,6 +30,7 @@ In your [Terraform configuration](https://learn.hashicorp.com/terraform/getting-
 module "rubrik_aws_cloud_cluster" {
   source = "rubrikinc/rubrik-s3-cloudout/aws"
 
+  aws_region   = "us-east-1"
   bucket_name  = "rubrik-tf-module-bucket"
   archive_name = "S3:ArchiveLocation"
 }
