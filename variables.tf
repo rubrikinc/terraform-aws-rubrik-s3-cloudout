@@ -1,7 +1,3 @@
-variable "region" {
-  description = "The region to create resoruces for Rubrik CloudOut."
-}
-
 variable "bucket_name" {
   description = "The name of the S3 bucket to use as an archive target."
 }
