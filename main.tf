@@ -9,6 +9,14 @@ data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
 
+##########################
+# Configure the provider #
+##########################
+
+provider "aws" {
+  region = var.region
+}
+
 ###############################
 # AWS IAM User and Permission #
 ###############################
