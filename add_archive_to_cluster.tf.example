@@ -1,0 +1,22 @@
+############################################
+#     Add Archive to Rubrik cluster        #
+############################################
+
+# This example requires the Rubrik Terraform module.
+# Currently the Rubrik Terraform Module only supports Terraform up to v0.11
+
+resource "rubrik_aws_s3_cloudout" "archive-target" {
+    aws_access_key    = "${aws_iam_access_key.rubrik-user.id}"
+    aws_secret_key    = "${aws_iam_access_key.rubrik-user.secret}"
+    aws_bucket        = "${aws_s3_bucket.archive_target.bucket}"
+    storage_class     = "${var.storage_class}"
+    archive_name      = "${var.archive_name}"
+    aws_region        = "${data.aws_region.current.name}"
+    kms_master_key_id = "${aws_kms_key.rubrik-cloudout.key_id}"
+    timeout           = "${var.timeout}"
+}
+
+output "rubrik_archive_name" {
+    description = "The name of the archival location created on the Rubrik cluster."
+    value       = "${rubrik_aws_s3_cloudout.archive-target.archive_name}"
+}
