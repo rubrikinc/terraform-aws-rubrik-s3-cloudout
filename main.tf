@@ -84,6 +84,14 @@ resource "aws_s3_bucket" "archive_target" {
   force_destroy = var.bucket_force_destory
 }
 
+resource "aws_s3_bucket_public_access_block" "archive_target" {
+  bucket                  = var.bucket_name
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 ############################################
 #      Create KMS Key for Encryption       #
 ############################################
@@ -143,3 +151,4 @@ resource "aws_kms_alias" "rubrik-cloudout" {
   name          = join ("/", ["alias", var.kms_key_alias])
   target_key_id = aws_kms_key.rubrik-cloudout.key_id
 }
+
