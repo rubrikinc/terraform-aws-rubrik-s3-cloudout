@@ -27,5 +27,5 @@ output "aws_kms_key" {
 }
 output "aws_region" {
   description = "The AWS region where the resoruces were created."
-  value       = var.region
+  value       = var.aws_region
 }
