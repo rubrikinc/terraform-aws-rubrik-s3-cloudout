@@ -5,7 +5,7 @@ data "template_file" "iam_secret_key" {
 output "aws_iam_user_info" {
   description = "The information about the AWS IAM User created."
   value       = {
-    "name"               = aws_iam_user.rubrik.name
+    "aws_iam_user_name" = aws_iam_user.rubrik.name
     "aws_iam_access_key" = aws_iam_access_key.rubrik-user.id
     "aws_iam_secret_key" = data.template_file.iam_secret_key.rendered
   }
