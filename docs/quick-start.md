@@ -117,8 +117,6 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
-### Gain Access to the Rubrik Cloud Cluster AMI
-
 ### Planning
 
 Run `terraform plan` to get information about what will happen when we apply the configuration; this will test that everything is set up correctly.
