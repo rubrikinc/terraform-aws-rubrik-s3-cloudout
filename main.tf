@@ -44,7 +44,8 @@ resource "aws_iam_policy" "cloud-out-permissions" {
             "Effect": "Allow",
             "Action": [
                 "s3:ListBucket",
-                "s3:GetBucketLocation"
+                "s3:GetBucketLocation",
+                "s3:GetBucketAcl"
             ],
             "Resource": "arn:aws:s3:::${var.bucket_name}"
         },
