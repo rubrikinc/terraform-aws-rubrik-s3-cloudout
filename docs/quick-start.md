@@ -65,10 +65,15 @@ The following are the variables accepted by the module.
 
 The following are the variables printed by the module.
 
-| Name                | Description                                                     |
-| ------------------- | --------------------------------------------------------------- |
-| aws_iam_user_name   | The name of the AWS IAM User created.                           |
-| rubrik_archive_name | he name of the archival location created on the Rubrik cluster. |
+| Name               | Description                                          |
+| ------------------ | ---------------------------------------------------- |
+| aws_iam_user_name  | The name of the AWS IAM User created.                |
+| aws_iam_access_key | The Access Key of the AWS IAM User that was created. |
+| aws_iam_secret_key | The Secret Key of the AWS IAM User that was created. |
+| aws_iam_policy     | The name ofthe AWS Policy created for the IAM User.  |
+| aws_bucket         | The AWS S3 bucket that was created.                  |
+| aws_kms_key        | The KMS Key ID of the KMS key that was created.      |
+| aws_region         | The AWS region where the resoruces were created.     |
 
 ## Running the Terraform Configuration
 
