@@ -6,7 +6,7 @@ Configure an AWS S3 archive target and add that target to the Rubrik cluster. Th
 - Create a new user specific to Rubrik
 - Create a new IAM Policy with the correct permissions and attached to the new user
 - Create a new KMS Key to use for encryption
-- Configure a Rubrik cluster to use the new S3 Bucket as an archival location
+- (optionally) Configure a Rubrik cluster to use the new S3 Bucket as an archival location
 
 Completing the steps detailed below will require that Terraform is installed and in your environment path, that you are running the instance from a \*nix shell (bash, zsh, etc).
 
@@ -78,6 +78,7 @@ This section outlines what is required to run the configuration defined above.
 
 - [Terraform](https://www.terraform.io/downloads.html) v0.15.4 or greater
 - [Rubrik Provider for Terraform](https://github.com/rubrikinc/rubrik-provider-for-terraform) - provides Terraform functions for Rubrik
+  - Only required to run the sample workflow for adding the archival location to Rubrik
 
 ### Initialize the Directory
 
@@ -119,7 +120,7 @@ Run `terraform plan` to get information about what will happen when we apply the
 
 ### Applying
 
-We can now apply the configuration to create the necessary resources in AWS. After AWS is configured, a new Archive Location will be added to your Rubrik cluster.
+We can now apply the configuration to create the necessary resources in AWS. After AWS is configured, (optionally) a new Archive Location will be added to your Rubrik cluster.
 
 ### Destroying
 
