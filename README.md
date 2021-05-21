@@ -12,7 +12,7 @@ Terraform module that configures an AWS S3 archive target and adds that target t
 
 ## Documentation
 
-Here are some resources to get you started! If you find any challenges from this project are not properly documented or are unclear, please raise an issueand let us know! This is a fun, safe environment - don't worry if you're a GitHub newbie!
+Here are some resources to get you started! If you find any challenges from this project are not properly documented or are unclear, please raise an issue and let us know! This is a fun, safe environment - don't worry if you're a GitHub newbie!
 
 - [Quick Start Guide](/docs/quick-start.md)
 - [Rubrik API Documentation](https://github.com/rubrikinc/api-documentation)
@@ -50,7 +50,7 @@ The following are the variables accepted by the module.
 | aws_region           | Region to create S3 bucket in                                                                                         | string |                  |   yes    |
 | bucket_name          | The name of the S3 bucket to use as an archive target.                                                                | string |                  |   yes    |
 | archive_name         | The name of the Rubrik archive location in the Rubrik GUI.                                                            | string |                  |   yes    |
-| bucket_force_destory | When true, indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. |  bool  |      false       |    no    |
+| bucket_force_destroy | When true, indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. |  bool  |      false       |    no    |
 | save_keys            | When true, save a copy of created IAM Access and Secret keys in iam_keys.txt.                                         |  bool  |      false       |    no    |
 | storage_class        | The storage class of the S3 Bucket. Valid choices are standard, standard_ia, and reduced_redundancy.                  | string |     standard     |    no    |
 | iam_user_name        | The name of the IAM User to create.                                                                                   | string |      rubrik      |    no    |
@@ -66,7 +66,7 @@ The following are the variables accepted by the module.
 
 ## Outputs
 
-The following are the variables outputed by the module.
+The following are the variables printed by the module.
 
 | Name                | Description                                                     |
 | ------------------- | --------------------------------------------------------------- |
