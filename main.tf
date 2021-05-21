@@ -1,11 +1,17 @@
-terraform {
-  required_version = ">= 0.10.3" # introduction of Local Values configuration language feature
-}
-
 #############################
 # Dynamic Variable Creation #
 #############################
 data "aws_caller_identity" "current" {}
+
+data "aws_region" "current" {}
+
+##########################
+# Configure the provider #
+##########################
+
+provider "aws" {
+  region = var.aws_region
+}
 
 ###############################
 # AWS IAM User and Permission #
@@ -34,7 +40,8 @@ resource "aws_iam_policy" "cloud-out-permissions" {
             "Effect": "Allow",
             "Action": [
                 "s3:ListBucket",
-                "s3:GetBucketLocation"
+                "s3:GetBucketLocation",
+                "s3:GetBucketAcl"
             ],
             "Resource": "arn:aws:s3:::${var.bucket_name}"
         },
@@ -88,70 +95,56 @@ resource "aws_kms_key" "rubrik-cloudout" {
   description = "KMS Key for Rubrik CloudOut."
 
   policy = <<EOF
-  {
-    "Version": "2012-10-17",
-    "Id": "key-consolepolicy-3",
-    "Statement": [
-        {
-            "Sid": "Enable IAM User Permissions",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
-            },
-            "Action": "kms:*",
-            "Resource": "*"
-        },
-        {
-            "Sid": "Allow access for Key Administrators",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "${aws_iam_user.rubrik.arn}"
-            },
-            "Action": [
-                "kms:Encrypt",
-                "kms:Decrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*",
-                "kms:DescribeKey"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "Allow use of the key",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "${aws_iam_user.rubrik.arn}"
-            },
-            "Action": [
-                "kms:Encrypt",
-                "kms:Decrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*",
-                "kms:DescribeKey"
-            ],
-            "Resource": "*"
-        }
-    ]
+{
+  "Version": "2012-10-17",
+  "Id": "Rubrik-CloudOut-KMS-Key",
+  "Statement": [
+      {
+          "Sid": "Enable IAM User Permissions",
+          "Effect": "Allow",
+          "Principal": {
+              "AWS": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+          },
+          "Action": "kms:*",
+          "Resource": "*"
+      },
+      {
+          "Sid": "Allow access for Key Administrators",
+          "Effect": "Allow",
+          "Principal": {
+              "AWS":"${aws_iam_user.rubrik.arn}"
+          },
+          "Action": [
+              "kms:Encrypt",
+              "kms:Decrypt",
+              "kms:ReEncrypt*",
+              "kms:GenerateDataKey*",
+              "kms:DescribeKey"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Sid": "Allow use of the key",
+          "Effect": "Allow",
+          "Principal": {
+              "AWS": "${aws_iam_user.rubrik.arn}"
+          },
+          "Action": [
+              "kms:Encrypt",
+              "kms:Decrypt",
+              "kms:ReEncrypt*",
+              "kms:GenerateDataKey*",
+              "kms:DescribeKey"
+          ],
+          "Resource": "*"
+      }
+  ]
 }
   EOF
 }
 
-resource "aws_kms_alias" "a" {
-  name          = "alias/${var.kms_key_alias}"
+resource "aws_kms_alias" "rubrik-cloudout" {
+  name          = join ("/", ["alias", var.kms_key_alias])
   target_key_id = aws_kms_key.rubrik-cloudout.key_id
 }
 
-############################################
-#     Add Archive to Rubrik cluster        #
-############################################
-
-resource "rubrik_aws_s3_cloudout" "archive-target" {
-  aws_access_key    = aws_iam_access_key.rubrik-user.id
-  aws_secret_key    = aws_iam_access_key.rubrik-user.secret
-  aws_bucket        = aws_s3_bucket.archive_target.bucket
-  storage_class     = var.storage_class
-  archive_name      = var.archive_name
-  aws_region        = var.aws_region
-  kms_master_key_id = aws_kms_key.rubrik-cloudout.key_id
-  timeout           = var.timeout
-}

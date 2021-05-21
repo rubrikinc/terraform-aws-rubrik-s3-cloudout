@@ -1,6 +1,5 @@
 variable "aws_region" {
-    type        = string
-    description = "Region to create S3 bucket in."
+  description = "The region to create resoruces for Rubrik CloudOut."
 }
 
 variable "bucket_name" {
