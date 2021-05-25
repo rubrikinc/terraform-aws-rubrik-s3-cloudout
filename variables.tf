@@ -1,3 +1,7 @@
+variable "aws_region" {
+  description = "The region to create resoruces for Rubrik CloudOut."
+}
+
 variable "bucket_name" {
   description = "The name of the S3 bucket to use as an archive target."
 }
@@ -34,4 +38,9 @@ variable "kms_key_alias" {
 variable "timeout" {
   description = "The number of seconds to wait to establish a connection the Rubrik cluster before returning a timeout error."
   default     = 120
+}
+
+variable "save_keys" {
+  description = "When set to true, access and secret keys for the newly created IAM account will be saved in iam_keys.txt"
+  default     = false
 }
